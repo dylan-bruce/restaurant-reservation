@@ -26,15 +26,15 @@ The restaurant reservation system is inteded for the use of a restaurant to trac
 ### Dashboard
 ![This is an image of the dashboard.](/photos/dashboard.PNG)
 ### Create A Table
-![This is an image of creating a table.](/photos/dashboard.PNG)
+![This is an image of creating a table.](/photos/createATable.PNG)
 ### Create A Reservation
-![This is an image of creating a reservation.](/photos/dashboard.PNG)
+![This is an image of creating a reservation.](/photos/createAReservation.PNG)
 ### Cancel A Reservation
-![This is an image of canceling a reservation.](/photos/dashboard.PNG)
+![This is an image of canceling a reservation.](/photos/cancelAReservation.PNG)
 ### Seat A Reservation
-![This is an image of seating a reservation.](/photos/dashboard.PNG)
+![This is an image of seating a reservation.](/photos/seatAReservation.PNG)
 ### Finish A Reservation
-![This is an image of finishing a reservation.](/photos/dashboard.PNG)
+![This is an image of finishing a reservation.](/photos/finishAReservation.PNG)
 
 ---
 ## Summary
