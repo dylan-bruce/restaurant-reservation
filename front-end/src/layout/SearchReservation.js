@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { searchReservations, changeResStatus } from "../utils/api";
 import ErrorAlert from "./ErrorAlert";
-import ReservationDisplay from "./reservations/ReservationDisplay";
+import SearchReservationDisplay from "./reservations/SearchReservationDisplay";
 function SearchReservations() {
   const [errors, setErrors] = useState(null);
   const [currentNumber, setCurrentNumber] = useState({ mobile_number: "" });
@@ -96,7 +96,7 @@ function SearchReservations() {
       </form>
 
       {matchingReservations && matchingReservations.length ? (
-        <ReservationDisplay
+        <SearchReservationDisplay
           reservations={matchingReservations}
           handleCancel={handleCancel}
         />

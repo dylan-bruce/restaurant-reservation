@@ -74,26 +74,39 @@ async function reservationExist(req, res, next) {
 }
 
 // this function is used before list to check the query params
-// and desicde how to request data from the data base
-async function checkQueryParams(req, res, next) {
-  const { date = "", mobile_number = "" } = req.query;
-  if (date) {
-    res.locals.reservations = await service.listByDate(date);
-  } else if (mobile_number) {
-    res.locals.reservations = await service.search(mobile_number);
-  }
-  next();
-}
+// and decides how to request data from the data base
+// async function checkQueryParams(req, res, next) {
+//   const { date = "", mobile_number = "" } = req.query;
+//   if (date) {
+//     res.locals.reservations = await service.listByDate(date);
+//   } else if (mobile_number) {
+//     res.locals.reservations = await service.search(mobile_number);
+//   }
+//   next();
+// }
 
-async function list(req, res) {
-  const reservations = res.locals.reservations || (await service.list());
-  const reservationsNotFinished = reservations.filter(
-    (reservation) => reservation.status !== "finished"
-  );
-  const sortedReservations = reservationsNotFinished.sort((firstEl, secEl) => {
-    return firstEl.reservation_time.localeCompare(secEl.reservation_time);
-  });
-  res.status(200).json({ data: sortedReservations });
+// async function list(req, res) {
+//   const reservations = res.locals.reservations || (await service.list());
+//   const reservationsNotFinished = reservations.filter(
+//     (reservation) => reservation.status !== "finished"
+//   );
+//   const sortedReservations = reservationsNotFinished.sort((firstEl, secEl) => {
+//     return firstEl.reservation_time.localeCompare(secEl.reservation_time);
+//   });
+//   res.status(200).json({ data: sortedReservations });
+// }
+
+const list = async (req, res) => {
+  const { date, mobile_number } = req.query
+  console.log('date: ', date);
+  console.log('phone: ', mobile_number);
+  if (date) {
+    const data = await service.list(date)
+    res.json({ data })
+  } else {
+    const data = await service.search(mobile_number)
+    res.json({ data })
+  };
 }
 
 async function create(req, res) {
@@ -121,7 +134,7 @@ async function updateStatus(req, res) {
 }
 
 module.exports = {
-  list: [asyncErrorBoundary(checkQueryParams), asyncErrorBoundary(list)],
+  list: asyncErrorBoundary(list),
   create: [
     hasOnlyValidReservationProperties,
     hasRequiredProperties,

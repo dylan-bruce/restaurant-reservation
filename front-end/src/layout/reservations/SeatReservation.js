@@ -18,14 +18,16 @@ function SeatReservation() {
   const handleSeatTable = async (event) => {
     const abortController = new AbortController();
     event.preventDefault();
-    await seatTable(
-      reservationId.reservation_id,
-      tableId,
-      abortController.signal
-    )
-      .then(() => history.push("/"))
-      .catch(setSeatingError);
-    return () => abortController.abort();
+    try {
+      await seatTable(
+        reservationId.reservation_id,
+        tableId,
+        abortController.signal
+      ).then(() => history.push("/"))
+    } catch (error) {
+      setSeatingError(error);
+    }
+    return () => abortController.abort()
   };
 
   return (
