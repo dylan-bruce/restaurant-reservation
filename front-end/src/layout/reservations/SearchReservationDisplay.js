@@ -3,12 +3,6 @@ import { Link } from "react-router-dom";
 
 function SearchReservationDisplay({ reservations, handleCancel }) {
   const reservationList = reservations.map((reservation) => {
-    // if (
-    //   reservation.status === "cancelled" ||
-    //   reservation.status === "finished"
-    // ) {
-    //   return null;
-    // }
     return (
       <div key={reservation.reservation_id} className="reservation-tile">
         <ul className="res-data-list">
